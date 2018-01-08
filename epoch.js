@@ -1,19 +1,14 @@
 //uses date to find time (which uses epoch) then displays and updates it onscreen. Uses a DOM approach.
 "use strict"
 var clockEle;
-var hoursEle;
-var colonEle;
-var minutesEle;
-var COLON_BLINK_DELAY = 1; //only in seconds
-
+var COLON_BLINK_DELAY = .5; //MUST divide evenly into 1000. Only in seconds
 
 window.onload = function () {
   clockEle = document.getElementById("clock");
   clockEle.style.width = window.innerWidth + "px"; //set the clock container to the width of the screen
   clockEle.style.height = window.innerHeight + "px"; //set the clock container to the height of the screen
-  var numCalls = 0; //used for delaying the blink of the colon separating hrs and minutes
-  updateTimeElement(clockEle, numCalls); //called once before setInterval so the elements get setup immediately on window load
-  setInterval(function () { updateTimeElement(clockEle, numCalls); numCalls++; } , 1000);
+  updateTimeElement(clockEle); //called once before setInterval so the elements get setup immediately on window load
+  setInterval(function () { updateTimeElement(clockEle); } , COLON_BLINK_DELAY*1000); //update every second
 }
 
 function updateTimeElement(element, timesCalled) {
@@ -32,15 +27,13 @@ function updateTimeElement(element, timesCalled) {
       var correspondingElement = element.children[i];
       correspondingElement.innerText = timeParts[i];
       if (correspondingElement.id == "colon") {
-        blinkColon(correspondingElement, timesCalled);
+        blinkColon(correspondingElement);
       }
     }
   }
 
 }
 
-function blinkColon(colon, seconds) {
-  if (seconds % COLON_BLINK_DELAY == 0) {
-    colon.style.visibility = (colon.style.visibility == "collapse") ? "visible" : "collapse";
-  }
+function blinkColon(colon) {
+  colon.style.visibility = (colon.style.visibility == "collapse") ? "visible" : "collapse";
 }

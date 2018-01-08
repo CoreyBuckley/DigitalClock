@@ -1,0 +1,24 @@
+/* custom font */
+@font-face {
+  font-family: digital-clock;
+  src: url(clockFont.ttf);
+}
+
+body {
+  background-color: aliceblue;
+}
+
+.clockNumber {
+  display: inline-block;
+  min-width: 151.28px;
+}
+
+#clock {
+  display: table-cell; /* allows for vertical-align so it can be centered */
+  color: #0064ff;
+  font-family: digital-clock, sans-serif;
+  font-size: 1000%; /* 10x regular size */
+  text-shadow: 1px 1px #0008ff;
+  text-align: center;
+  vertical-align: middle;
+}

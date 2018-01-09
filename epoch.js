@@ -1,39 +1,39 @@
 //uses date to find time (which uses epoch) then displays and updates it onscreen. Uses a DOM approach.
 "use strict"
 var clockEle;
-var COLON_BLINK_DELAY = .5; //MUST divide evenly into 1000. Only in seconds
+var time = {now: ""};
 
 window.onload = function () {
   clockEle = document.getElementById("clock");
   clockEle.style.width = window.innerWidth + "px"; //set the clock container to the width of the screen
   clockEle.style.height = window.innerHeight + "px"; //set the clock container to the height of the screen
-  updateTimeElement(clockEle); //called once before setInterval so the elements get setup immediately on window load
-  setInterval(function () { updateTimeElement(clockEle); } , COLON_BLINK_DELAY*1000); //update every second
+  updateTimeElement(clockEle);
 }
 
-function updateTimeElement(element, timesCalled) {
+function updateTimeElement(element) {
   if (element) {
-    var time = new Date().toLocaleString().split(", ")[1]; //original format ex. "1/7/2018, 7:33:56 PM" after split ex. 7:32:51 AM
-    var amOrPm = time.substr(-2,2); //starts from end-2 and length is 2
-    time = (time.slice(0,-3)).split(":"); //gets rid of the " AM" or " PM" then splits based on ":" so we get components
-    //reference for dif between substr and split:
-    //https://stackoverflow.com/questions/2243824/what-is-the-difference-between-string-slice-and-string-substring
-    //basically, substr(start,len); slice(start,end) where end can be negative; substr isn't best b/c len can't be negative
-    var hrs = time[0];
-    var minutes = time[1];
-    var seconds = time[2];
-    var timeParts = [hrs, ":", minutes, seconds, amOrPm]; //sequentially, how the time will be displayed onscreen
-    for (var i = 0; i < timeParts.length; i++) {
-      var correspondingElement = element.children[i];
-      correspondingElement.innerText = timeParts[i];
-      if (correspondingElement.id == "colon") {
-        blinkColon(correspondingElement);
-      }
+    time.now = new Date().toLocaleString().split(", ")[1]; //original format ex. "1/7/2018, 7:33:56 PM" after split ex. 7:32:51 AM
+    var amOrPm = time.pop(-3).trim(); //starts from end-3 " AM" or " PM" then gets rid of space
+    var seconds = time.pop(-3).slice(1);
+    var centiseconds = Math.floor((new Date().getMilliseconds())/10);
+    var elements = element.children;
+    var timeParts = [time.now, amOrPm, seconds, centiseconds];
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].innerHTML = timeParts[i];
+    }
+    setTimeout(function () { updateTimeElement(element); }, 10); //update every centisecond. 1000 ms = 1 sec; 100 ms = 1 decisecond; 10 ms = 1 centisecond
+  }
+}
+
+time.pop = function(begin) { //uses slice() but subtracts the slice from the original string. Can only use one index bc it fits my purpose
+  var extracted = time.now.slice(begin);
+  if (begin) { //this block modifies the string so it removes the section extracted
+    if (begin < 0) {
+      time.now = time.now.slice(0, time.now.length+begin); //if begin is neg, then the slice will be that or beyond index of the str. Thus, the rest of the string will go from 0 to the beginning
+    }
+    else {
+      time.now = time.now.slice(0, begin);
     }
   }
-
-}
-
-function blinkColon(colon) {
-  colon.style.visibility = (colon.style.visibility == "collapse") ? "visible" : "collapse";
+  return extracted;
 }

@@ -13,6 +13,24 @@ body {
   min-width: 151.28px;
 }
 
+.hrsMins {
+  letter-spacing: 10px;
+}
+
+.amPm {
+  color: #ad1515;
+}
+
+.seconds {
+  color: black;
+  font-size: 50%;
+}
+
+.centiseconds {
+  color: black;
+  font-size: 30%;
+}
+
 #clock {
   display: table-cell; /* allows for vertical-align so it can be centered */
   color: #0064ff;

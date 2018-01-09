@@ -4,10 +4,15 @@ var clockEle;
 var time = {now: ""};
 
 window.onload = function () {
-  clockEle = document.getElementById("clock");
+  clockEle = document.getElementById("clockContainer");
   clockEle.style.width = window.innerWidth + "px"; //set the clock container to the width of the screen
   clockEle.style.height = window.innerHeight + "px"; //set the clock container to the height of the screen
-  updateTimeElement(clockEle);
+  if (clockEle) { //make sure the HTML container is there
+    updateTimeElement(clockEle);
+  }
+  else {
+    console.error("There is no element with 'clockContainer' tag.");
+  }
 }
 
 function updateTimeElement(element) {
@@ -17,7 +22,7 @@ function updateTimeElement(element) {
     var seconds = time.pop(-3).slice(1);
     var centiseconds = Math.floor((new Date().getMilliseconds())/10);
     var elements = element.children;
-    var timeParts = [time.now, amOrPm, seconds, centiseconds];
+    var timeParts = [time.now, amOrPm, seconds, centiseconds]; //the sequential format in which the time will be displayed
     for (var i = 0; i < elements.length; i++) {
       elements[i].innerHTML = timeParts[i];
     }

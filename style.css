@@ -10,11 +10,11 @@ body {
 
 .clockNumber {
   display: inline-block;
-  min-width: 151.28px;
+  min-width: 10.5986vw;
 }
 
 .hrsMins {
-  letter-spacing: 10px;
+  letter-spacing: 0.7vw;
 }
 
 .amPm {
@@ -23,19 +23,19 @@ body {
 
 .seconds {
   color: black;
-  font-size: 50%;
+  font-size: 4.5vw;
 }
 
 .centiseconds {
   color: black;
-  font-size: 30%;
+  font-size: 2.5vw;
 }
 
-#clock {
+#clockContainer {
   display: table-cell; /* allows for vertical-align so it can be centered */
   color: #0064ff;
   font-family: digital-clock, sans-serif;
-  font-size: 1000%; /* 10x regular size */
+  font-size: 10vw;
   text-shadow: 1px 1px #0008ff;
   text-align: center;
   vertical-align: middle;

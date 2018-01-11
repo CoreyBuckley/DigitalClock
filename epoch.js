@@ -12,8 +12,8 @@ window.onload = function () {
   clockEle = document.getElementById("clockContainer");
   clockEle.style.width = window.innerWidth + "px"; //set the clock container to the width of the screen
   clockEle.style.height = window.innerHeight + "px"; //set the clock container to the height of the screen
-  allowBlink = false;
-  allowSeconds = allowCentiseconds = true;
+  allowBlink = allowCentiseconds = false;
+  allowSeconds = true;
   if (clockEle) { //make sure the HTML container is there
     updateTimeElement(clockEle);
   }

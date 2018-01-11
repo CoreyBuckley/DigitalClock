@@ -4,11 +4,30 @@
     <meta charset="utf-8">
     <title>Digital Clock</title>
     <link href="style.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="epoch.js"></script>
   </head>
   <body>
+    <div class="OptionsDropContainer">
+      <button class="OptionsDropBtn">Options </button>
+      <div class="OptionsDropItems">
+          <div id="blinkOptionBool" onclick="toggleBlink();toggleCheckmarkIcon(this)">
+            Blink &nbsp <i class="fa fa-square-o" aria-hidden="true"></i>  <!-- &nbsp is a whitespace char -->
+          </div>
+          <div id="secondOptionBool" onclick="toggleSeconds();toggleCheckmarkIcon(this)">
+            Seconds &nbsp <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          </div>
+          <div id="centisecondOptionBool" onclick="toggleCentiseconds();toggleCheckmarkIcon(this)">
+            Centiseconds &nbsp <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
     <div id="clockContainer">
-      <span id="hrsAndMinutes" class="clockNumber hrsMins">
+      <span id="hrs" class="clockNumber">
+
+      </span>
+      <span id="colon" class="clockNumber"></span>
+      <span id="minutes" class="clockNumber">
 
       </span>
       <span id="amOrPm" class="clockNumber amPm">

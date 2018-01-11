@@ -20,7 +20,7 @@ body {
 
 .clockNumber {
   display: inline-block;
-  min-width: 2.65vw;
+  min-width: 4.85vw;
 }
 
 .hrsMins {
@@ -45,7 +45,7 @@ body {
 
 .OptionsDropContainer {
   display: inline-block;
-  position: relative;
+  position: absolute;
 }
 
 .OptionsDropBtn {

@@ -53,13 +53,12 @@ body {
   background-color: #aedcb1;
   color: #0a3303;
   font-family: Tahoma, sans-serif;
-  font-size: medium;
+  font-size: 1vw;
   text-shadow: 1px 1px white;
   border-color: darkseagreen;
   border-style: outset;
   font-weight: 550;
-  max-width: 120px;
-  min-width: 100px;
+  min-width: 6.07em;
   z-index: 1;
 }
 

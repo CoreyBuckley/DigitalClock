@@ -44,8 +44,8 @@ body {
 /*    D R O P D O W N    M E N U     */
 
 .OptionsDropContainer {
-  display: inline-block;
   position: absolute;
+  display: inline-block;
 }
 
 .OptionsDropBtn {
@@ -70,8 +70,12 @@ body {
   display: block;
 }
 
+.OptionsDropContainer:hover .OptionsDropBtn { /* darken options btn when dropdown active */
+  background-color: #7dc582;
+}
+
 .OptionsDropItems {
-  display: block;
+  display: none;
   position: absolute;
   background-color: white;
   box-shadow: 0px 8px 14px 1px rgba(0,0,0,0.2);
@@ -85,7 +89,7 @@ body {
   background-color: lightgreen;
 }
 
-.OptionsDropItems div {
+.OptionsDropItems div { /* the divs represent items in the dropdown */
   display: inline-block;
   padding: 5px 0px;
   margin-right: 2px;
